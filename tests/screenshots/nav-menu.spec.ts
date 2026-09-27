@@ -14,13 +14,9 @@ test('bottom-nav-notes-menu', async ({ page, openApp, text, capture }) => {
   await openApp({ issues: issues() });
   const nav = page.locator('.bottom-nav');
   await expect(nav).toBeVisible();
-  await nav
-    .getByRole('link', { name: text('Notes', '笔记'), exact: true })
-    .click({ button: 'right' });
+  await nav.getByRole('link', { name: text('Notes', '笔记'), exact: true }).click({ button: 'right' });
   await capture();
-  await expect(
-    page.getByRole('menuitem', { name: text('New note', '新建笔记'), exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('menuitem', { name: text('New note', '新建笔记'), exact: true })).toBeVisible();
 });
 
 test('bottom-nav-trash-menu', async ({ page, openApp, text, capture }) => {
@@ -29,9 +25,7 @@ test('bottom-nav-trash-menu', async ({ page, openApp, text, capture }) => {
   await openApp({ issues: issues() });
   const nav = page.locator('.bottom-nav');
   await expect(nav).toBeVisible();
-  await nav
-    .getByRole('link', { name: text('Trash', '回收站'), exact: true })
-    .click({ button: 'right' });
+  await nav.getByRole('link', { name: text('Trash', '回收站'), exact: true }).click({ button: 'right' });
   await capture();
   await expect(
     page.getByRole('menuitem', { name: text('Empty trash', '清空回收站'), exact: true }),
@@ -40,13 +34,8 @@ test('bottom-nav-trash-menu', async ({ page, openApp, text, capture }) => {
 
 test('checked-item-marks', async ({ page, openApp, text, capture }) => {
   await openApp();
-  await page
-    .locator('.note-card')
-    .filter({ hasText: 'Weekend ideas' })
-    .click({ button: 'right' });
+  await page.locator('.note-card').filter({ hasText: 'Weekend ideas' }).click({ button: 'right' });
   await page.getByRole('menuitem', { name: text('Labels', '标签'), exact: true }).hover();
-  await expect(
-    page.getByRole('menuitemcheckbox', { name: 'Personal', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('menuitemcheckbox', { name: 'Personal', exact: true })).toBeVisible();
   await capture();
 });
